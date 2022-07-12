@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:projeto6/Screens/tela_inicial.dart';
+import 'package:projeto6/Services/digimon_service.dart';
+
+void setLocator() {
+  GetIt.instance.registerLazySingleton(() => DigimonService());
+}
 
 void main() {
+  setLocator();
   runApp(const MyApp());
 }
 
@@ -13,9 +21,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Digimons"),
+        ),
+        body: TelaInicia(),
+      ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
